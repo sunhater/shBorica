@@ -122,6 +122,10 @@ class Borica {
         return isset($this->defaults[$key]) ? $this->defaults[$key] : null;
     }
 
+    public function url() {
+        return self::URL[$this->config['test_mode'] ? 'test' : 'live'];
+    }
+
     public function collectRequestData(array &$data) {
         $types = self::TRANSACTION_TYPES;
 
@@ -200,7 +204,7 @@ class Borica {
 
         $this->collectRequestData($data);
 
-        $form = '<form action="' . self::URL[$this->config['test_mode'] ? 'test' : 'live'] . '" id="pay-with-borica" method="post">';
+        $form = '<form action="' . $this->url() . '" id="pay-with-borica" method="post">';
 
         foreach ($data as $key => $val) {
             $key = htmlspecialchars($key, ENT_QUOTES, 'UTF-8');
