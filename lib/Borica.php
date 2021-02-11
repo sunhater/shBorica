@@ -19,7 +19,7 @@ class Borica {
 
         1 => [
             'name' => 'Payment',
-            'fields' => ['AMOUNT', 'CURRENCY', 'DESC', 'TERMINAL', 'MERCH_NAME', 'MERCH_URL', 'MERCHANT', 'EMAIL', 'TRTYPE', 'ORDER', 'AD.CUST_BOR_ORDER_ID', 'COUNTRY', 'TIMESTAMP', 'MERCH_GMT', 'NONCE', 'ADDENDUM', 'BACKREF'],
+            'fields' => ['AMOUNT', 'CURRENCY', 'DESC', 'TERMINAL', 'MERCH_NAME', 'MERCH_URL', 'MERCHANT', 'EMAIL', 'TRTYPE', 'ORDER', 'AD.CUST_BOR_ORDER_ID', 'COUNTRY', 'TIMESTAMP', 'MERCH_GMT', 'NONCE', 'ADDENDUM'],
             'sign_request_fields' => ['TERMINAL', 'TRTYPE', 'AMOUNT', 'CURRENCY', 'ORDER', 'MERCHANT', 'TIMESTAMP', 'NONCE'],
             'sign_response_fields' => ['ACTION', 'RC', 'APPROVAL', 'TERMINAL', 'TRTYPE', 'AMOUNT', 'CURRENCY', 'ORDER', 'RRN', 'INT_REF', 'PARES_STATUS', 'ECI', 'TIMESTAMP', 'NONCE']
         ],
@@ -258,6 +258,7 @@ class Borica {
         foreach ($types[$data['TRTYPE']]['sign_response_fields'] as $key)
             $sign .= isset($data[$key]) && is_scalar($data[$key]) && strlen($data[$key])
                 ? strlen($data[$key]) . $data[$key] : '-';
+        $sign = rtrim($sign, '-');
 
         $p_sign = hex2bin($data['P_SIGN']);
         $key = openssl_get_publickey($this->config["certificate"]);
