@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'prefix' => 'MYPR-',
+    'suffix' => 'MYBRAND',
     'mode' => 'test',
     'private_key' => '',
     'private_key_password' => '',
