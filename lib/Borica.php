@@ -86,7 +86,7 @@ class Borica {
 
     protected $config = [
         'test_mode' => true,
-        'prefix' => 'ORDER-',
+        'suffix' => 'MYSHOP',
     //  'private_key' => '',
     //  'private_key_password' => '',
     //  'certificate' => '',
@@ -98,7 +98,7 @@ class Borica {
         'ADDENDUM' => 'AD,TD',
         'CURRENCY' => 'BGN',
         'COUNTRY' => 'BG',
-        'MERCH_GMT' => '+03',
+        'MERCH_GMT' => '+02',
     //  'MERCH_NAME' => '',
     //  'MERCH_URL' => '',
     //  'BACKREF' => '',
@@ -187,7 +187,7 @@ class Borica {
                     $data['NONCE'] = strtoupper(bin2hex(openssl_random_pseudo_bytes(16)));
 
                 elseif (($field == 'AD.CUST_BOR_ORDER_ID') && isset($order))
-                    $data['AD.CUST_BOR_ORDER_ID'] = $this->config['prefix'] . $order;
+                    $data['AD.CUST_BOR_ORDER_ID'] = $data['ORDER'] . str_pad($this->config['suffix'], 16, '-', STR_PAD_LEFT);
 
                 continue;
             }
