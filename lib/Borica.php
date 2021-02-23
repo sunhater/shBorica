@@ -70,18 +70,19 @@ class Borica {
 
     const RC_CODES = [
         '00' => 'Successfully processed transaction',
-        '-19' => 'Unsuccessful transaction',
-        '-25' => 'Transaction confirmation is interrupted by the user',
-        '-31' => 'The transaction is processed by the issuer',
-        '-33' => 'Authentication by the user',
-        '-39' => 'User confirmation request',
-        '-40' => 'User transaction form request'
-    ];
-
-    const STATUSMSG_CODES = [
-        'AS_FAIL' => 'Canceled upon 3DS authentication',
-        'AS_OTP_ERROR' => 'Unsuccessful authentication with disposable password',
-        'AS_RND_ERROR' => 'Unsuccessful authentication with random sum'
+        '-1' => 'A mandatory request field is not filled in',
+        '-3' => 'Acquirer host (NS) does not respond or wrong format of e-gateway response template file',
+        '-4' => 'No connection to the acquirer host (NS)',
+        '-11' => 'Error in the "Currency" request field',
+        '-12' => 'Error in the "Merchant ID" request field',
+        '-15' => 'Error in the "RRN" request field',
+        '-17' => 'Грешка при проверка на P_SIGN',
+        '-19' => 'Error in the authentication information request or authentication failed',
+        '-20' => 'A permitted time interval (1 hour by default) between the transaction Time Stam prequest field and the e-Gateway time is exceeded',
+        '-21' => 'The transaction has already been executed',
+        '-25' => 'Transaction canceled (e.g. by user)',
+        '-27' => 'Invalid merchant name',
+        '-32' => 'Duplicate declined transaction'
     ];
 
     protected $config = [
